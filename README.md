@@ -30,9 +30,12 @@ Entrust is a succinct and flexible way to add Role-based Permissions to **Larave
 1) In order to install Laravel 6 Entrust, just add the following to your composer.json. Then run `composer update`:
 
 ```json
-"gghughunishvili/entrust": "^2.0"
+"shinnlu/entrust": "^2.0"
 ```
-
+Laravel 9:
+```json
+"shinnlu/entrust": "^5.0"
+```
 2) Open your `config/app.php` and add the following to the `providers` array:
 
 ```php
@@ -532,6 +535,11 @@ If your app uses a custom namespace then you'll need to tell entrust where your 
 ```
 'permission' => 'Custom\Namespace\permission'
 ```
+
+## issues
++ duplicated query in trait: Role->hasPermission, User->hasRole, User->can
++ cache won't disable by APP_CACHE=false when CACHE_DRIVER support Tag
+
 ## License
 
 Entrust is free software distributed under the terms of the MIT license.
