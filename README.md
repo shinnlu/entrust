@@ -1,4 +1,4 @@
-# ENTRUST (Laravel 6 Package)
+# ENTRUST (Laravel 6-10 Package)
 
 Entrust is a succinct and flexible way to add Role-based Permissions to **Laravel 6**.
 
@@ -35,6 +35,10 @@ Entrust is a succinct and flexible way to add Role-based Permissions to **Larave
 Laravel 9:
 ```json
 "shinnlu/entrust": "^5.0"
+```
+Laravel 10:
+```json
+"shinnlu/entrust": "^5.3"
 ```
 2) Open your `config/app.php` and add the following to the `providers` array:
 
