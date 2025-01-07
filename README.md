@@ -40,7 +40,7 @@ Laravel 10:
 ```json
 "shinnlu/entrust": "^5.3"
 ```
-Laravel 10:
+Laravel 11:
 ```json
 "shinnlu/entrust": "^5.4"
 ```
