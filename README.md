@@ -40,6 +40,10 @@ Laravel 10:
 ```json
 "shinnlu/entrust": "^5.3"
 ```
+Laravel 10:
+```json
+"shinnlu/entrust": "^5.4"
+```
 2) Open your `config/app.php` and add the following to the `providers` array:
 
 ```php
