@@ -2,6 +2,9 @@
 
 use Zizaco\Entrust\Entrust;
 use PHPUnit\Framework\TestCase;
+use Illuminate\Support\Facades\Facade;
+use PHPUnit\Framework\Attributes\DataProvider;
+
 use Mockery as m;
 
 class EntrustTest extends TestCase
@@ -15,7 +18,6 @@ class EntrustTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
         $this->nullFilterTest = function($filterClosure) {
             if (!($filterClosure instanceof Closure)) {
                 return false;
@@ -217,7 +219,6 @@ class EntrustTest extends TestCase
         */
         $entrust->routeNeedsRole($route, $oneRole);
         $entrust->routeNeedsRole($route, $manyRole);
-
         $this->assertTrueWithoutException();
     }
 
@@ -259,7 +260,6 @@ class EntrustTest extends TestCase
         */
         $entrust->routeNeedsPermission($route, $onePerm);
         $entrust->routeNeedsPermission($route, $manyPerm);
-
         $this->assertTrueWithoutException();
     }
 
@@ -323,11 +323,10 @@ class EntrustTest extends TestCase
         $entrust->routeNeedsRoleOrPermission($route, $oneRole, $manyPerm);
         $entrust->routeNeedsRoleOrPermission($route, $manyRole, $onePerm);
         $entrust->routeNeedsRoleOrPermission($route, $manyRole, $manyPerm);
-
         $this->assertTrueWithoutException();
     }
 
-    public function simpleFilterDataProvider()
+    public static function simpleFilterDataProvider()
     {
         return [
             // Filter passes, null is returned
@@ -339,17 +338,13 @@ class EntrustTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider simpleFilterDataProvider
-     */
+    #[DataProvider('simpleFilterDataProvider')]
     public function testFilterGeneratedByRouteNeedsRole($returnValue, $filterTest, $abort = false, $expectedResponse = null)
     {
         $this->filterTestExecution('routeNeedsRole', 'hasRole', $returnValue, $filterTest, $abort, $expectedResponse);
     }
 
-    /**
-     * @dataProvider simpleFilterDataProvider
-     */
+    #[DataProvider('simpleFilterDataProvider')]
     public function testFilterGeneratedByRouteNeedsPermission($returnValue, $filterTest, $abort = false, $expectedResponse = null)
     {
         $this->filterTestExecution('routeNeedsPermission', 'can', $returnValue, $filterTest, $abort, $expectedResponse);
@@ -380,7 +375,7 @@ class EntrustTest extends TestCase
         $entrust->$methodTested($route, $methodValue, $expectedResponse);
     }
 
-    public function routeNeedsRoleOrPermissionFilterDataProvider()
+    public static function routeNeedsRoleOrPermissionFilterDataProvider()
     {
         return [
             // Both role and permission pass, null is returned
@@ -402,9 +397,8 @@ class EntrustTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider routeNeedsRoleOrPermissionFilterDataProvider
-     */
+
+    #[DataProvider('routeNeedsRoleOrPermissionFilterDataProvider')]
     public function testFilterGeneratedByRouteNeedsRoleOrPermission(
         $roleIsValid, $permIsValid, $filterTest, $requireAll = false, $abort = false, $expectedResponse = null
     ) {

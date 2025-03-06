@@ -14,7 +14,7 @@ class EntrustUserTest extends TestCase
 {
     private $facadeMocks = array();
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -30,7 +30,7 @@ class EntrustUserTest extends TestCase
         Cache::swap($this->facadeMocks['cache']);
     }
 
-    protected function tearDown(): void
+    public function tearDown() : void
     {
         parent::tearDown();
         m::close();
@@ -955,7 +955,6 @@ class EntrustUserTest extends TestCase
         $user->attachRole($roleObject);
         $user->attachRole($roleArray);
         $user->attachRole(3);
-
         $this->assertTrueWithoutException();
     }
 
@@ -1000,7 +999,6 @@ class EntrustUserTest extends TestCase
         $user->detachRole($roleObject);
         $user->detachRole($roleArray);
         $user->detachRole(3);
-
         $this->assertTrueWithoutException();
     }
 
@@ -1034,7 +1032,6 @@ class EntrustUserTest extends TestCase
         |------------------------------------------------------------
         */
         $user->attachRoles([1, 2, 3]);
-
         $this->assertTrueWithoutException();
     }
 
@@ -1068,7 +1065,6 @@ class EntrustUserTest extends TestCase
         |------------------------------------------------------------
         */
         $user->detachRoles([1, 2, 3]);
-
         $this->assertTrueWithoutException();
     }
 
@@ -1111,7 +1107,6 @@ class EntrustUserTest extends TestCase
         |------------------------------------------------------------
         */
         $user->detachRoles();
-
         $this->assertTrueWithoutException();
 
     }
@@ -1127,14 +1122,14 @@ class EntrustUserTest extends TestCase
     }
 
     protected function mockRole($roleName)
-    {
+{
         $roleMock = m::mock('Zizaco\Entrust\Role');
         $roleMock->name = $roleName;
         $roleMock->perms = [];
         $roleMock->permissions = [];
         $roleMock->id = 1;
 
-        return $roleMock;
+    return $roleMock;
     }
 
     private function assertTrueWithoutException()

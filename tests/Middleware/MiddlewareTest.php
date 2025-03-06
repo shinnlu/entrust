@@ -3,12 +3,13 @@
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
-abstract class MiddlewareTest extends TestCase
+class MiddlewareTest extends TestCase
 {
 	public static $abortCode = null;
 
-	public static function setUpBeforeClass(): void
+	public static function setupBeforeClass(): void
 	{
+		parent::setupBeforeClass();
 		if (! function_exists('abort')) {
 		    /**
 		     * Mimicks Laravel5's abort() helper function.
@@ -30,7 +31,7 @@ abstract class MiddlewareTest extends TestCase
 		}
 	}
 
-	protected function tearDown(): void
+	public function tearDown(): void
 	{
 		parent::tearDown();
 
